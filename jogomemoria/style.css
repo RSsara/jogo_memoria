@@ -4,23 +4,22 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    margin: 0;
+
 }
 
-.game-container {
+.jogomemoria {
+   
     display: grid;
-    grid-template-columns: repeat(4, 100px);
-    gap: 10px;
+    grid-template-columns: repeat(3, 1fr); /* 3 colunas de largura igual */
+    gap: 10px; /* Espaçamento entre as cartas */
+    
 }
 
-.card {
-    width: 100px;
-    height: 100px;
-    background-color: #972f2f;
+.carta {
+    width: 100px; /* Largura das cartas */
+    height: 100px; /* Altura das cartas */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 24px;
     cursor: pointer;
 }

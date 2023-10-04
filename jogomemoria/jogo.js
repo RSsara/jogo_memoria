@@ -1,30 +1,30 @@
-const professions = [
-    'Médico', 'Engenheiro', 'Professor', 'Advogado', 'policial' ,
-    'Médico', 'Engenheiro', 'Professor', 'Advogado', 'policial' ,
+const profissoes = [
+    'Médico', 'Engenheiro', 'Professor', 'Advogado', 'Policial', 'Jornalista',
 ];
 
+// Duplicar as profissões para criar pares correspondentes
+const paresProfissoes = [...profissoes, ...profissoes];
 
-function createCard(profession, index) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.dataset.index = index;
+function createCarta(profissao, index) {
+    const carta = document.createElement('div');
+    carta.classList.add('carta');
+    carta.dataset.index = index;
 
     // Crie um elemento de imagem
     const image = document.createElement('img');
-    image.src = 'img/medica.png'
+    image.src = 'img/medica.png';
 
     // Adicione a imagem à carta
-    card.appendChild(image);
+    carta.appendChild(image);
 
-    card.addEventListener('click', () => flipCard(card));
-    return card;
+    carta.textContent = profissao; // Defina o conteúdo de texto da carta como a profissao
+    carta.addEventListener('click', () => flipCarta(carta));
+    return carta;
 }
 
-
-
-let cards = shuffle([...professions]);
-let flippedCards = [];
-let matchedCards = [];
+let cards = shuffle(paresProfissoes);
+let flippedCartas = [];
+let matchedCartas = [];
 
 function shuffle(array) {
     let currentIndex = array.length;
@@ -42,60 +42,54 @@ function shuffle(array) {
     return array;
 }
 
-function createCard(profession, index) {
-    const card = document.createElement('div');
-    card.classList.add('card');
-    card.dataset.index = index;
-    card.textContent = profession;
-    card.addEventListener('click', () => flipCard(card));
-    return card;
-}
+function flipCarta(carta) {
+    if (flippedCartas.length < 2 && !flippedCartas.includes(carta)) {
+        carta.classList.add('flipped');
+        flippedCartas.push(carta);
 
-function flipCard(card) {
-    if (flippedCards.length < 2 && !flippedCards.includes(card)) {
-        card.classList.add('flipped');
-        flippedCards.push(card);
-
-        if (flippedCards.length === 2) {
+        if (flippedCartas.length === 2) {
             setTimeout(checkForMatch, 1000);
         }
     }
 }
 
 function checkForMatch() {
-    const [card1, card2] = flippedCards;
-    if (card1.textContent === card2.textContent) {
-        matchedCards.push(card1, card2);
-        card1.removeEventListener('click', flipCard);
-        card2.removeEventListener('click', flipCard);
-    } else {
-        card1.classList.remove('flipped');
-        card2.classList.remove('flipped');
-    }
-    flippedCards = [];
+    const [carta1, carta2] = flippedCartas;
+    const index1 = carta1.dataset.index;
+    const index2 = carta2.dataset.index;
 
-    if (matchedCards.length === cards.length) {
+    if (cards[index1] === cards[index2]) {
+        matchedCartas.push(carta1, carta2);
+        carta1.removeEventListener('click', () => flipCarta(carta1));
+        carta2.removeEventListener('click', () => flipCarta(carta2));
+    } else {
+        carta1.classList.remove('flipped');
+        carta2.classList.remove('flipped');
+    }
+    flippedCartas = [];
+
+    if (matchedCartas.length === profissoes.length * 2) {
         alert('Parabéns, você ganhou o jogo!');
         resetGame();
     }
 }
 
 function resetGame() {
-    cards = shuffle([...professions]);
-    matchedCards = [];
-    flippedCards = [];
+    cards = shuffle([...paresProfissoes]);
+    matchedCartas = [];
+    flippedCartas = [];
 
-    document.querySelectorAll('.card').forEach(card => {
-        card.classList.remove('flipped');
-        card.addEventListener('click', () => flipCard(card));
+    document.querySelectorAll('.carta').forEach(carta => {
+        carta.classList.remove('flipped');
+        carta.addEventListener('click', () => flipCarta(carta));
     });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const gameContainer = document.querySelector('.game-container');
-    
-    cards.forEach((profession, index) => {
-        const card = createCard(profession, index);
-        gameContainer.appendChild(card);
+    const jogoMemoria = document.querySelector('.jogomemoria');
+
+    cards.forEach((profissao, index) => {
+        const carta = createCarta(profissao, index);
+        jogoMemoria.appendChild(carta);
     });
 });
