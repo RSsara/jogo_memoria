@@ -1,43 +1,32 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jogo da Memória de Profissões</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/login.css">
+
+  <script defer src="./js/login.js"></script>
+  <link rel="shortcut icon" href="./images/brain.png" type="image/x-icon">
+  <title>Memória| Login</title>
 </head>
 
 <body>
-    <!-- Tela de Início -->
-    <div class="start-screen">
-        
-       
-<h1>Bem-vindo ao Jogo da Memória de Profissões</h1>
-        <p>Clique em "Iniciar Jogo" para começar!</p>
-        <button class="start-button" onclick="startGame()">Iniciar Jogo</button>
+
+  <form class="login-form">
+
+    <div class="login__header">
+      <img src="./images/eng.png" alt="carta com uma engenheira">
+      <h1>Jogo Memória</h1>
     </div>
 
-    <div class="jogomemoria">
-        <div class="carta">
-            <img src="img/juiza.png" alt="imagem em que está uma mulher vestida como uma juíza e a em que está escrita juíza">
-        </div>
-        <div class="carta">
-            <img src="img/engenheira.png" alt="imagem em que está uma mulher vestida como uma engenheira com um mapa em uma das mãos e um rádio na outra com a palavra engenheira na descrição">
-        </div>
-        <div class="carta">
-            <img src="img/medica.png" alt="imagem em que está uma mulher vestida como uma médica e  em que está escrita médica">
-        </div>
-        <div class="carta">
-            <img src="img/policia.png" alt="imagem em que está um homem vestido como um policial com um rádio em uma das mãos com a palavra policial na descrição">
-        </div>
-        <div class="carta">
-            <img src="img/professora.png" alt="imagem em que uma mulher está na frente de um quadro de escola verde com a palavra professora na descrição">
-        </div>
-        <div class="carta">
-            <img src="img/jornalista.png" alt="imagem em que está com um microfone com a palavra jornalista na descrição">
-        </div>
-    </div>
+    <input type="text" placeholder="Name" class="login__input">
+    <button type="submit" class="login__button">Iniciar</button>
 
-<script src="jogo.js"></script>
+  </form>
+
 </body>
+
 </html>
